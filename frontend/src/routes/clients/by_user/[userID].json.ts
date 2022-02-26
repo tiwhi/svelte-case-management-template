@@ -2,6 +2,7 @@ export async function get({ params }) {
 	const clients = [
 		{
 			id: 1,
+			attorneyID: 1,
 			Client: 'HILL, KENNETH',
 			NYSID: '04122663Q',
 			Docket: 'CR-037036-19NY',
@@ -25,6 +26,7 @@ export async function get({ params }) {
 		},
 		{
 			id: 2,
+			attorneyID: 1,
 			Client: 'TRAVIS, KELLEY',
 			NYSID: '14983880M',
 			Docket: 'CR-010338-20NY',
@@ -48,10 +50,10 @@ export async function get({ params }) {
 		},
 	];
 
-	const client = clients.find((c) => c.id == params.id);
+	const userClients = clients.filter((c) => c.attorneyID == params.userID);
 
 	return {
 		status: 200,
-		body: client,
+		body: userClients,
 	};
 }

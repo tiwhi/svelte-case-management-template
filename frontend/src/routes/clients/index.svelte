@@ -20,14 +20,49 @@
 
 <script lang="ts">
 	export let clients;
+	let searchTerm = '';
+
+	$: filteredList = clients.filter((client) => {
+		return (
+			client.Client.toLowerCase().includes(searchTerm) ||
+			client.Client.includes(searchTerm) ||
+			client.NYSID.toLowerCase().includes(searchTerm) ||
+			client.NYSID.includes(searchTerm) ||
+			client.Next_Court_Date.includes(searchTerm) ||
+			client.Docket.toLowerCase().includes(searchTerm) ||
+			client.Docket.includes(searchTerm) ||
+			client.Indictment.includes(searchTerm) ||
+			client.Next_Court_Part.toLowerCase().includes(searchTerm) ||
+			client.Next_Court_Part.includes(searchTerm) ||
+			client.Release_Status.toLowerCase().includes(searchTerm) ||
+			client.Release_Status.includes(searchTerm) ||
+			client.Immigration_Status.toLowerCase().includes(searchTerm) ||
+			client.Immigration_Status.includes(searchTerm) ||
+			client.Curr_Top_Charge.includes(searchTerm) ||
+			client.Curr_Top_Charge.toLowerCase().includes(searchTerm)
+		);
+	});
 </script>
 
-<h1>All Clients</h1>
+<h1 class="text-center m-5 text-5xl">All Clients</h1>
 
-{#each clients as client}
-	<div class="card w-fit bg-neutral shadow-xl m-5 p-5">
-		<h2>{client.Client}</h2>
-		<p>NYISD: {client.NYSID}</p>
+<div class="card w-auto bg-base-100 shadow-xl m-5 p-5">
+	<div class="flex justify-center ">
+		<input
+			type="text"
+			placeholder="Type here"
+			class="input input-bordered input-primary w-full max-w-xs"
+			bind:value={searchTerm}
+		/>
+	</div>
+</div>
+
+{#each filteredList as client}
+	<div class="card w-auto bg-base-100 shadow-xl m-5 p-5">
+		<h2 class="text-lg">{client.Client}</h2>
+		<p>
+			NYISD: {client.NYSID}
+		</p>
 		<p>Docket: {client.Docket}</p>
 		{#if client.Indictment != ''}
 			<p>Indictment: {client.Indictment}</p>
@@ -37,5 +72,8 @@
 		<p>Release Status: {client.Release_Status}</p>
 		<p>Immigration Status: {client.Immigration_Status}</p>
 		<p>Top Charge: {client.Curr_Top_Charge}</p>
+		<div class="badge badge-primary mt-2">
+			<a sveltekit:prefetch href={`clients/${client.id}`}>View</a>
+		</div>
 	</div>
 {/each}
