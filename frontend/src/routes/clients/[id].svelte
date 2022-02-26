@@ -22,16 +22,17 @@
 
 <div class="card w-auto bg-base-100 shadow-xl m-5 p-5">
 	<h2 class="text-lg">{client.Client}</h2>
-	<p>
-		NYISD: {client.NYSID}
-	</p>
-	<p>Docket: {client.Docket}</p>
+	<p><u>Phone</u>: {client.Phone}</p>
+	<p><u> NYISD</u>: {client.NYSID}</p>
+	<p><u>Docket</u>: {client.Docket}</p>
 	{#if client.Indictment != ''}
-		<p>Indictment: {client.Indictment}</p>
+		<p><u>Indictment</u>: {client.Indictment}</p>
 	{/if}
-	<p>Next Court Date: {client.Next_Court_Date}</p>
-	<p>Court Part: {client.Next_Court_Part}</p>
-	<p>Release Status: {client.Release_Status}</p>
-	<p>Immigration Status: {client.Immigration_Status}</p>
-	<p>Top Charge: {client.Curr_Top_Charge}</p>
+	<p><u>Next Court Date</u>: {client.Next_Court_Date}</p>
+	<p><u>Court Part</u>: {client.Next_Court_Part}</p>
+	<p><u>Release Status</u>: {client.Release_Status}</p>
+	<p>
+		<u>Immigration Status</u>: {client.Immigration_Status}
+	</p>
+	<p><u>Top Charge</u>: {client.Curr_Top_Charge}</p>
 </div>
